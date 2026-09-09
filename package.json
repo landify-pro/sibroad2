@@ -1,0 +1,12 @@
+{
+  "name": "sibroad-city",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite dist --host 0.0.0.0",
+    "build": "node scripts/validate.mjs"
+  },
+  "devDependencies": {
+    "vite": "8.0.13"
+  }
+}
