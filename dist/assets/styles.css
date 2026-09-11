@@ -246,8 +246,10 @@ h1 em, h2 em { color: var(--yellow); font-style: normal; }
 .company-layout {
   position: relative;
   display: grid;
-  grid-template-columns: 110px minmax(360px, 520px) 1fr;
-  gap: 44px;
+  grid-template-columns: 110px minmax(420px, 620px) 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 44px;
+  row-gap: 34px;
   padding-top: 105px;
   padding-bottom: 100px;
 }
@@ -255,7 +257,7 @@ h1 em, h2 em { color: var(--yellow); font-style: normal; }
 .section-index span { color: var(--yellow); font-size: .67rem; font-weight: 800; }
 .section-index p { margin: 0; font-size: .64rem; letter-spacing: .18em; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); }
 .section-index.dark p { color: #525960; }
-.company-copy { align-self: center; }
+.company-copy { grid-column: 2; align-self: end; }
 .company-copy h2, .section-head h2, .advantages-head h2, .contact-heading h2 {
   margin-bottom: 28px;
   font-size: clamp(2.65rem, 4.5vw, 5.5rem);
@@ -282,17 +284,19 @@ h1 em, h2 em { color: var(--yellow); font-style: normal; }
 }
 .text-link:hover { color: var(--yellow); border-color: var(--yellow); }
 .company-points {
-  align-self: center;
-  justify-self: end;
-  width: min(100%, 385px);
-  background: rgba(8,11,15,.62);
-  border: 1px solid rgba(255,255,255,.15);
-  backdrop-filter: blur(13px);
+  grid-column: 2;
+  align-self: start;
+  justify-self: start;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 28px;
+  background: transparent;
+  border: 0;
 }
-.company-points article { display: grid; grid-template-columns: 38px 1fr; align-items: center; gap: 16px; min-height: 84px; padding: 17px 20px; border-bottom: 1px solid rgba(255,255,255,.13); }
-.company-points article:last-child { border-bottom: 0; }
-.point-icon { width: 35px; height: 35px; display: grid; place-items: center; color: var(--yellow); border: 1px solid rgba(244,196,0,.6); border-radius: 50%; font-size: .61rem; }
-.company-points p { margin: 0; font-size: .82rem; line-height: 1.45; }
+.company-points article { display: grid; grid-template-columns: 30px 1fr; align-items: start; gap: 12px; min-height: 62px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.23); }
+.point-icon { width: 27px; height: 27px; display: grid; place-items: center; color: var(--yellow); border: 1px solid rgba(244,196,0,.62); border-radius: 50%; font-size: .52rem; }
+.company-points p { margin: 3px 0 0; color: rgba(255,255,255,.84); font-size: .76rem; line-height: 1.4; }
 
 .section-light { color: #11151a; background: var(--paper); }
 .services, .process { padding: 110px 0 125px; }
@@ -306,16 +310,15 @@ h1 em, h2 em { color: var(--yellow); font-style: normal; }
 .section-head h2 { margin: 0; }
 .section-head p { margin: 0 0 8px; color: #5e656c; font-size: 1rem; line-height: 1.65; }
 .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--dark-line); }
-.service-card { position: relative; min-height: 390px; padding: 28px; border-right: 1px solid var(--dark-line); transition: transform .35s ease, background .35s ease, color .35s ease; }
+.service-card { position: relative; min-height: 390px; padding: 28px; background: rgba(255,255,255,.42); border-right: 1px solid var(--dark-line); transition: transform .35s ease, background .35s ease, color .35s ease, box-shadow .35s ease; }
 .service-card:last-child { border-right: 0; }
-.service-card:hover { z-index: 2; transform: translateY(-9px); background: #fff; box-shadow: 0 20px 50px rgba(0,0,0,.12); }
-.service-card.dark-card { color: #fff; background: var(--ink-2); }
-.service-card.dark-card:hover { background: #171d24; }
+.service-card::before { content: ''; position: absolute; top: -1px; left: 28px; width: 44px; height: 3px; background: var(--yellow); }
+.service-card:hover { z-index: 2; color: #fff; transform: translateY(-9px); background: var(--ink-2); box-shadow: 0 20px 50px rgba(0,0,0,.18); }
+.service-card:hover p { color: #b4bbc2; }
 .service-number { color: #888f95; font-size: .68rem; letter-spacing: .08em; }
 .service-card svg { position: absolute; top: 74px; left: 28px; width: 52px; height: 52px; fill: none; stroke: var(--yellow); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .service-card h3 { position: absolute; left: 28px; right: 28px; bottom: 112px; margin: 0; font-size: 1.38rem; line-height: 1.15; letter-spacing: -.025em; }
 .service-card p { position: absolute; left: 28px; right: 28px; bottom: 25px; margin: 0; color: #676e74; font-size: .86rem; line-height: 1.5; }
-.dark-card p { color: #9ba2aa; }
 
 .advantages { position: relative; padding: 110px 0 125px; overflow: hidden; background: #0b0f14; }
 .advantages::before {
@@ -382,7 +385,7 @@ footer { border-top: 1px solid var(--line); background: #080b0e; }
   .header { padding: 0 28px; }
   .nav { gap: 18px; }
   .nav a { font-size: .7rem; }
-  .company-layout { grid-template-columns: 70px minmax(340px, 1fr) .85fr; gap: 24px; }
+  .company-layout { grid-template-columns: 70px minmax(340px, 600px) 1fr; column-gap: 24px; }
   .section-head, .advantages-head, .advantage-list, .process-track, .contact-heading, .contact-grid { margin-left: 94px; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .service-card:nth-child(2) { border-right: 0; }
@@ -448,32 +451,32 @@ footer { border-top: 1px solid var(--line); background: #080b0e; }
   .hero-stats strong { margin-bottom: 3px; font-size: 1.45rem; }
   .hero-stats span { font-size: .61rem; }
 
-  .company { min-height: 1020px; }
+  .company { min-height: 0; }
   .company-media img { object-position: center center; }
   .company-overlay { background: linear-gradient(180deg, rgba(5,8,11,.95) 0%, rgba(5,8,11,.73) 44%, rgba(5,8,11,.43) 67%, rgba(5,8,11,.97) 100%); }
-  .company-layout { display: block; padding: 88px 0 54px; }
+  .company-layout { display: block; padding: 88px 0 64px; }
   .section-index { gap: 9px; margin-bottom: 35px; }
   .section-index p { writing-mode: initial; transform: none; }
   .company-copy { max-width: 440px; }
   .company-copy h2, .section-head h2, .advantages-head h2, .contact-heading h2 { font-size: clamp(2.35rem, 11vw, 4rem); }
   .company-copy .lead { max-width: 350px; font-size: .87rem; line-height: 1.55; }
   .text-link { margin-top: 6px; }
-  .company-points { position: absolute; left: 0; right: 0; bottom: 34px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; backdrop-filter: blur(15px); }
-  .company-points article { grid-template-columns: 28px 1fr; min-height: 88px; gap: 10px; padding: 12px; }
-  .company-points article:nth-child(1), .company-points article:nth-child(3) { border-right: 1px solid rgba(255,255,255,.13); }
+  .company-points { position: relative; left: auto; right: auto; bottom: auto; width: 100%; margin-top: 52px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; background: linear-gradient(90deg, rgba(5,8,11,.5), rgba(5,8,11,.15)); backdrop-filter: none; }
+  .company-points article { grid-template-columns: 28px 1fr; min-height: 76px; gap: 9px; padding: 13px 0; }
   .point-icon { width: 28px; height: 28px; font-size: .52rem; }
-  .company-points p { font-size: .66rem; line-height: 1.35; }
+  .company-points p { font-size: .68rem; line-height: 1.35; }
 
   .services, .process, .advantages, .contacts { padding: 78px 0; }
   .section-head, .advantages-head, .contact-heading { margin: 0 0 42px; }
   .section-head p { max-width: 440px; font-size: .9rem; }
   .services-grid { grid-template-columns: 1fr; }
-  .service-card { min-height: 290px; border-right: 0; border-bottom: 1px solid var(--dark-line); }
+  .service-card { min-height: 205px; border-right: 0; border-bottom: 1px solid var(--dark-line); background: rgba(255,255,255,.5); }
   .service-card:last-child { border-bottom: 0; }
   .service-card:nth-child(2) { border-bottom: 1px solid var(--dark-line); }
-  .service-card svg { top: 58px; }
-  .service-card h3 { bottom: 91px; }
-  .service-card p { bottom: 22px; }
+  .service-card::before { left: 20px; width: 38px; }
+  .service-card svg { top: 24px; right: 22px; left: auto; width: 44px; height: 44px; }
+  .service-card h3 { left: 20px; right: 82px; bottom: 76px; font-size: 1.18rem; }
+  .service-card p { left: 20px; right: 20px; bottom: 18px; font-size: .8rem; }
   .road-lines { right: -160px; }
   .advantages-head { gap: 8px; }
   .advantages-head > p { order: 2; }
@@ -493,7 +496,9 @@ footer { border-top: 1px solid var(--line); background: #080b0e; }
 @media (max-width: 390px) {
   h1 { font-size: 2.75rem; }
   .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 270px; }
-  .company-points p { font-size: .61rem; }
+  .company-points { grid-template-columns: 1fr; margin-top: 38px; }
+  .company-points article { min-height: 60px; }
+  .company-points p { font-size: .7rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
